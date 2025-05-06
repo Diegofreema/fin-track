@@ -1,14 +1,40 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { CustomText } from '@/components/ui/custom-text';
 import { colors } from '@/constants';
-import { AntDesign } from '@expo/vector-icons';
-export const Input = ({ label, placeholder, iconName }) => {
+import { AntDesign, Feather } from '@expo/vector-icons';
+export const Input = ({
+  label,
+  placeholder,
+  iconName,
+  toggleSecure,
+  password,
+  securedTextEntry,
+}) => {
   return (
     <View style={styles.container}>
       <CustomText text={label} style={styles.label} />
       <View style={styles.inputContainer}>
         <AntDesign name={iconName} size={24} color={colors.grey} />
-        <TextInput style={styles.input} placeholder={placeholder} />
+        <TextInput
+          style={styles.input}
+          placeholder={placeholder}
+          secureTextEntry={securedTextEntry}
+        />
+        {password && (
+          <TouchableOpacity onPress={toggleSecure}>
+            <Feather
+              name={securedTextEntry ? 'eye-off' : 'eye'}
+              size={24}
+              color={colors.grey}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

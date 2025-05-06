@@ -2,13 +2,22 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '@/constants';
 import { CustomText } from '@/components/ui/custom-text';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import { useRouter } from 'expo-router';
 export const LoginAction = () => {
+  const router = useRouter();
+  const onPress = () => {
+    router.push('/register');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.welcome}>
         <CustomText text="Welcome back" style={styles.welcomeText} />
       </View>
-      <TouchableOpacity style={styles.account}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.account}
+        onPress={onPress}
+      >
         <CustomText text={'Create Account'} style={styles.accountText} />
       </TouchableOpacity>
     </View>
